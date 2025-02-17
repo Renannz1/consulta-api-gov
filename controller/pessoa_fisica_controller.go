@@ -12,6 +12,7 @@ func PessoaFisicaController(context *gin.Context) {
 
 	if cpf == "" {
 		context.JSON(http.StatusBadRequest, gin.H{"erro": "O cpf não pode ser vazio"})
+		return
 	}
 
 	pessoa, err := services.GetPessoaFisica(cpf)
