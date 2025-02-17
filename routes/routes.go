@@ -6,7 +6,13 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-// SetupRoutes configura as rotas da aplicação
 func SetupRoutes(router *gin.Engine) {
-	router.GET("/pessoa/:cpf", controller.PessoaFisicaController)
+	router.GET("/", func(c *gin.Context) {
+		c.HTML(200, "index.html", nil)
+	})
+
+	router.GET("/form-pessoa-fisica", func(c *gin.Context) {
+		c.HTML(200, "form_pessoa_fisica.html", nil)
+	})
+	router.GET("/pessoa-fisica", controller.PessoaFisicaController)
 }

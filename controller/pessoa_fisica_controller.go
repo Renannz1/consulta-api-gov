@@ -8,7 +8,11 @@ import (
 )
 
 func PessoaFisicaController(context *gin.Context) {
-	cpf := context.Param("cpf")
+	cpf := context.DefaultQuery("cpf", "")
+
+	if cpf == "" {
+		context.JSON(http.StatusBadRequest, gin.H{"erro": "O cpf não pode ser vazio"})
+	}
 
 	pessoa, err := services.GetPessoaFisica(cpf)
 	if err != nil {
@@ -16,5 +20,7 @@ func PessoaFisicaController(context *gin.Context) {
 		return
 	}
 
-	context.JSON(http.StatusOK, pessoa)
+	context.HTML(http.StatusOK, "pessoafisica.html", gin.H{
+		"pessoa": pessoa,
+	})
 }
