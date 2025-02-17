@@ -9,4 +9,5 @@ import (
 // SetupRoutes configura as rotas da aplicação
 func SetupRoutes(router *gin.Engine) {
 	router.GET("/despesas", controller.GetExpensesController)
+	router.GET("/pessoa/:cpf", controller.PessoaFisicaController)
 }

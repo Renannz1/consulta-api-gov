@@ -13,7 +13,7 @@ import (
 // GetExpenses busca os gastos públicos na API
 func GetExpenses() ([]models.Expense, error) {
 	conf := config.LoadConfig()
-	url := fmt.Sprintf("%s/api-de-despesas", conf.PortalAPIURL) // Ajuste o endpoint correto
+	url := fmt.Sprintf("%s/api-de-despesas", config.LoadConfig().PortalAPIKey) // Ajuste o endpoint correto
 
 	// Criar requisição
 	req, err := http.NewRequest("GET", url, nil)
