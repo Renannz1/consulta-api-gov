@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resultado Pessoa Jurídica</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container card mt-5 mb-5">
+        <h1 class="text-center mt-3 mb-4">Resultado Pessoa Jurídica</h1>
+
+        {{ if .pessoaJuridica }}
+            <div class="card mb-3">
+                <div class="card-body">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item"><strong>CNPJ:</strong> {{ .pessoaJuridica.CNPJ }}</li>
+                        <li class="list-group-item"><strong>Razão Social:</strong> {{ .pessoaJuridica.RazaoSocial }}</li>
+                        <li class="list-group-item"><strong>Nome Fantasia:</strong> {{ .pessoaJuridica.NomeFantasia }}</li>
+                        <li class="list-group-item"><strong>Favorecido de Despesas:</strong> 
+                            <span class="badge {{ if .pessoaJuridica.FavorecidoDespesas }}bg-success{{ else }}bg-secondary{{ end }}">
+                                {{ if .pessoaJuridica.FavorecidoDespesas }}Verdadeiro{{ else }}Falso{{ end }}
+                            </span>
+                        </li>
+                        <li class="list-group-item"><strong>Possui Contratação:</strong> 
+                            <span class="badge {{ if .pessoaJuridica.PossuiContratacao }}bg-success{{ else }}bg-secondary{{ end }}">
+                                {{ if .pessoaJuridica.PossuiContratacao }}Verdadeiro{{ else }}Falso{{ end }}
+                            </span>
+                        </li>
+                        <li class="list-group-item"><strong>Convênios:</strong> 
+                            <span class="badge {{ if .pessoaJuridica.Convenios }}bg-success{{ else }}bg-secondary{{ end }}">
+                                {{ if .pessoaJuridica.Convenios }}Verdadeiro{{ else }}Falso{{ end }}
+                            </span>
+                        </li>
+                        <li class="list-group-item"><strong>Favorecido de Transferências:</strong> 
+                            <span class="badge {{ if .pessoaJuridica.FavorecidoTransferencias }}bg-success{{ else }}bg-secondary{{ end }}">
+                                {{ if .pessoaJuridica.FavorecidoTransferencias }}Verdadeiro{{ else }}Falso{{ end }}
+                            </span>
+                        </li>
+                        <li class="list-group-item"><strong>Sancionado CEPIM:</strong> 
+                            <span class="badge {{ if .pessoaJuridica.SancionadoCEPIM }}bg-success{{ else }}bg-secondary{{ end }}">
+                                {{ if .pessoaJuridica.SancionadoCEPIM }}Verdadeiro{{ else }}Falso{{ end }}
+                            </span>
+                        </li>
+                        <li class="list-group-item"><strong>Sancionado CEIS:</strong> 
+                            <span class="badge {{ if .pessoaJuridica.SancionadoCEIS }}bg-success{{ else }}bg-secondary{{ end }}">
+                                {{ if .pessoaJuridica.SancionadoCEIS }}Verdadeiro{{ else }}Falso{{ end }}
+                            </span>
+                        </li>
+                        <li class="list-group-item"><strong>Sancionado CNEP:</strong> 
+                            <span class="badge {{ if .pessoaJuridica.SancionadoCNEP }}bg-success{{ else }}bg-secondary{{ end }}">
+                                {{ if .pessoaJuridica.SancionadoCNEP }}Verdadeiro{{ else }}Falso{{ end }}
+                            </span>
+                        </li>
+                        <li class="list-group-item"><strong>Sancionado CEAF:</strong> 
+                            <span class="badge {{ if .pessoaJuridica.SancionadoCEAF }}bg-success{{ else }}bg-secondary{{ end }}">
+                                {{ if .pessoaJuridica.SancionadoCEAF }}Verdadeiro{{ else }}Falso{{ end }}
+                            </span>
+                        </li>
+                        <li class="list-group-item"><strong>Participante de Licitação:</strong> 
+                            <span class="badge {{ if .pessoaJuridica.ParticipanteLicitacao }}bg-success{{ else }}bg-secondary{{ end }}">
+                                {{ if .pessoaJuridica.ParticipanteLicitacao }}Verdadeiro{{ else }}Falso{{ end }}
+                            </span>
+                        </li>
+                        <li class="list-group-item"><strong>Emitiu NFe:</strong> 
+                            <span class="badge {{ if .pessoaJuridica.EmitiuNFe }}bg-success{{ else }}bg-secondary{{ end }}">
+                                {{ if .pessoaJuridica.EmitiuNFe }}Verdadeiro{{ else }}Falso{{ end }}
+                            </span>
+                        </li>
+                        <li class="list-group-item"><strong>Beneficiado de Renúncia Fiscal:</strong> 
+                            <span class="badge {{ if .pessoaJuridica.BeneficiadoRenunciaFiscal }}bg-success{{ else }}bg-secondary{{ end }}">
+                                {{ if .pessoaJuridica.BeneficiadoRenunciaFiscal }}Verdadeiro{{ else }}Falso{{ end }}
+                            </span>
+                        </li>
+                        <li class="list-group-item"><strong>Isento/Imune de Renúncia Fiscal:</strong> 
+                            <span class="badge {{ if .pessoaJuridica.IsentoImuneRenunciaFiscal }}bg-success{{ else }}bg-secondary{{ end }}">
+                                {{ if .pessoaJuridica.IsentoImuneRenunciaFiscal }}Verdadeiro{{ else }}Falso{{ end }}
+                            </span>
+                        </li>
+                        <li class="list-group-item"><strong>Habilitado para Renúncia Fiscal:</strong> 
+                            <span class="badge {{ if .pessoaJuridica.HabilitadoRenunciaFiscal }}bg-success{{ else }}bg-secondary{{ end }}">
+                                {{ if .pessoaJuridica.HabilitadoRenunciaFiscal }}Verdadeiro{{ else }}Falso{{ end }}
+                            </span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        {{ else }}
+            <div class="alert alert-warning text-center">
+                Não encontramos dados para o CNPJ informado.
+            </div>
+        {{ end }}
+
+        <div class="text-center mt-3">
+            <a href="/" class="btn btn-secondary mb-3">Voltar</a>
+            <a href="/form-pessoa-juridica" class="btn btn-primary mb-3">Nova Consulta</a>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

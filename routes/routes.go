@@ -32,5 +32,11 @@ func SetupRoutes(router *gin.Engine) {
 	router.GET("/garantia-safra", controller.GarantiaSafraController)
 
 
+	    // Rota para o formulário de Pessoa Jurídica
+    router.GET("/form-pessoa-juridica", func(c *gin.Context) {
+        c.HTML(200, "form_pessoa_juridica.html", nil)
+    })
 
+    // Rota para consultar a Pessoa Jurídica
+    router.GET("/pessoa-juridica", controller.PessoaJuridicaController)
 }
