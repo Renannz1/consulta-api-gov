@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Garantia Safra - Informações do Beneficiário</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container card mt-5 mb-5">
+        <h1 class="text-center mt-3 mb-4">Dados do Beneficiário - Garantia Safra</h1>
+
+        <!-- Verificando se a consulta retornou dados -->
+        {{ if .safraBeneficiario }}
+            {{ range .safraBeneficiario }}
+            <div class="card mb-3">
+                <div class="card-body">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item"><strong>CPF:</strong> {{ .BeneficiarioSafra.CPFFormatado }}</li>
+                        <li class="list-group-item"><strong>Nome:</strong> {{ .BeneficiarioSafra.Nome }}</li>
+                        <li class="list-group-item"><strong>Data de Referência:</strong> {{ .DataMesReferencia }}</li>
+                        <li class="list-group-item"><strong>Valor do Benefício:</strong> R$ {{ printf "%.2f" .Valor }}</li>
+                        <li class="list-group-item"><strong>Código do Município:</strong> {{ .Mun.CodigoIBGE }}</li>
+                        <li class="list-group-item"><strong>Município:</strong> {{ .Mun.NomeIBGE }}</li>
+                        <li class="list-group-item"><strong>Região:</strong> {{ .Mun.NomeRegiao }}</li>
+                        <li class="list-group-item"><strong>Estado (UF):</strong> {{ .Mun.UF.Nome }} ({{ .Mun.UF.Sigla }})</li>
+                        <li class="list-group-item"><strong>País:</strong> {{ .Mun.Pais }}</li>
+                    </ul>
+                </div>
+            </div>
+            {{ end }}
+        {{ else }}
+            <!-- Exibindo mensagem caso não encontre dados -->
+            <div class="alert alert-warning text-center">
+                Não encontramos dados para o CPF informado.
+            </div>
+        {{ end }}
+
+        <div class="text-center mt-3">
+            <a href="/" class="btn btn-secondary mb-3">Voltar</a>
+            <a href="/form-garantia-safra" class="btn btn-primary mb-3">Nova Consulta</a>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
