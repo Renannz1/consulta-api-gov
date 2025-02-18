@@ -15,11 +15,7 @@ func PessoaFisicaController(context *gin.Context) {
 		return
 	}
 
-	pessoa, err := services.GetPessoaFisica(cpf)
-	if err != nil {
-		context.JSON(http.StatusInternalServerError, gin.H{"erro": err.Error()})
-		return
-	}
+	pessoa, _ := services.GetPessoaFisica(cpf)
 
 	context.HTML(http.StatusOK, "pessoafisica.html", gin.H{
 		"pessoa": pessoa,

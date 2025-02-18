@@ -11,6 +11,8 @@
         <h1 class="text-center mt-3 mb-4">Pessoa Física por CPF</h1>
         <div class="card">
             <div class="card-body">
+
+                {{ if .pessoa }}
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item"><strong>CPF:</strong> {{ .pessoa.Cpf }}</li>
                     <li class="list-group-item"><strong>Nome:</strong> {{ .pessoa.Nome }}</li>
@@ -150,6 +152,11 @@
                         </span>
                     </li>
                 </ul>
+                {{ else }}
+                    <div class="alert alert-warning text-center">
+                        Não encontramos dados para o CPF informado.
+                    </div>
+                {{ end }}
             </div>
         </div>
         <div class="text-center mt-3">

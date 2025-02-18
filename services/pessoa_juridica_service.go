@@ -27,7 +27,6 @@ func GetPessoaJuridica(cnpj string) (*models.PessoaJuridica, error) {
     }
     defer resp.Body.Close()
 
-    // Verifica o status code
     if resp.StatusCode != http.StatusOK {
         return nil, fmt.Errorf("erro na requisição, status code: %d", resp.StatusCode)
     }

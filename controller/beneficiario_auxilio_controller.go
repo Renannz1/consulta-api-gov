@@ -20,14 +20,12 @@ func AuxilioEmergencialController(context *gin.Context) {
 		pagina = "1"
 	}
 
-	// Consulta os dados do auxílio emergencial
 	dados, err := services.GetAuxilioEmergencialPorCPF(codigoBeneficiario, pagina)
 	if err != nil {
 		context.JSON(http.StatusInternalServerError, gin.H{"erro": err.Error()})
 		return
 	}
 
-	// Exibe os dados na view
 	context.HTML(http.StatusOK, "beneficiario_auxilio.html", gin.H{
 		"dados": dados,
 	})

@@ -26,6 +26,14 @@ func GetPessoaFisica(cpf string) (*models.PessoaFisica, error) {
 	if err != nil {
 		return nil, err
 	}
+	defer response.Body.Close()
+
+	// Verifica o status HTTP da resposta
+	if response.StatusCode == http.StatusNotFound {
+		return nil, fmt.Errorf("CPF não encontrado")
+	} else if response.StatusCode != http.StatusOK {
+		return nil, fmt.Errorf("erro ao consultar a API: status %d", response.StatusCode)
+	}
 
 	body, err := io.ReadAll(response.Body)
 	if err != nil {

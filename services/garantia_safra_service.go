@@ -17,7 +17,6 @@ func GetGarantiaSafra(cpf string, pagina string) ([]models.SafraBeneficiario, er
         return nil, err
     }
 
-    // Adiciona a chave da API no cabeçalho
     req.Header.Add("chave-api-dados", config.PortalAPIKey)
 
     client := &http.Client{}
